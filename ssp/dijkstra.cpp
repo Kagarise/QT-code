@@ -20,18 +20,14 @@ void Dijkstra::init(MapInfo map){
 void Dijkstra::solveByDistance(){
     struct cmp{
         bool operator() (pic A, pic B){
-            if(A.first == B.first){
-                if(A.second.dis == B.second.dis)
-                    return A.second.tim > B.second.tim;
-                return A.second.dis > B.second.dis;
-            }
-            return A.first < B.first;
+            if(A.second.dis == B.second.dis)
+                return A.second.tim > B.second.tim;
+            return A.second.dis > B.second.dis;
         }
     };
     priority_queue<pic, vector<pic>, cmp > Q;
     cost[st] = Cost(0, 0);
     Q.push(make_pair(st, cost[st]));
-
     while(!Q.empty()){
         pic tmp = Q.top();
         Q.pop();
@@ -55,12 +51,9 @@ void Dijkstra::solveByDistance(){
 void Dijkstra::solveByTime(){
     struct cmp{
         bool operator() (pic A, pic B){
-            if(A.first == B.first){
-                if(A.second.tim == B.second.tim)
-                    return A.second.dis > B.second.dis;
-                return A.second.tim > B.second.tim;
-            }
-            return A.first < B.first;
+            if(A.second.tim == B.second.tim)
+                return A.second.dis > B.second.dis;
+            return A.second.tim > B.second.tim;
         }
     };
     priority_queue<pic, vector<pic>, cmp > Q;
